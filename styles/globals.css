@@ -1,0 +1,889 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap');
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --font-size: 14px;
+  --font-family: 'Montserrat', sans-serif;
+  
+  /* LIVT 5-Color System */
+  --livt-black: #0a0a0a;
+  --livt-white: #ffffff;
+  --livt-gray: #888888;
+  --livt-purple: #a855f7;  /* AI/Smart Features */
+  --livt-cyan: #00d4ff;    /* Performance Stats */
+  
+  /* Extended Grays for UI Hierarchy */
+  --livt-dark-gray: #1a1a1a;
+  --livt-medium-gray: #2a2a2a;
+  --livt-light-gray: #c0c0c0;
+  
+  /* Data-Specific Colors (Hydration, Nutrition, Analytics) */
+  --data-green: #10b981;
+  --data-red: #ef4444;
+  --data-amber: #f59e0b;
+  
+  --background: var(--livt-white);
+  --foreground: var(--livt-black);
+  --card: var(--livt-white);
+  --card-foreground: var(--livt-black);
+  --popover: var(--livt-white);
+  --popover-foreground: var(--livt-black);
+  --primary: var(--livt-black);
+  --primary-foreground: var(--livt-white);
+  --secondary: var(--livt-light-gray);
+  --secondary-foreground: var(--livt-black);
+  --muted: var(--livt-gray);
+  --muted-foreground: var(--livt-gray);
+  --accent: var(--livt-white);
+  --accent-foreground: var(--livt-black);
+  --destructive: var(--data-red);
+  --destructive-foreground: var(--livt-white);
+  --border: rgba(136, 136, 136, 0.2);
+  --input: transparent;
+  --ring: var(--livt-gray);
+  --chart-1: var(--livt-cyan);
+  --chart-2: var(--data-green);
+  --chart-3: var(--data-amber);
+  --chart-4: var(--data-red);
+  --chart-5: var(--livt-purple);
+  --radius: 1rem;
+}
+
+.dark {
+  --background: var(--livt-black);
+  --foreground: var(--livt-white);
+  --card: var(--livt-dark-gray);
+  --card-foreground: var(--livt-white);
+  --popover: var(--livt-dark-gray);
+  --popover-foreground: var(--livt-white);
+  --primary: var(--livt-white);
+  --primary-foreground: var(--livt-black);
+  --secondary: var(--livt-medium-gray);
+  --secondary-foreground: var(--livt-white);
+  --muted: var(--livt-gray);
+  --muted-foreground: var(--livt-gray);
+  --accent: var(--livt-white);
+  --accent-foreground: var(--livt-black);
+  --destructive: var(--data-red);
+  --destructive-foreground: var(--livt-white);
+  --border: rgba(136, 136, 136, 0.3);
+  --input: var(--livt-medium-gray);
+  --ring: var(--livt-gray);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+/* Remove All Scrollbars */
+* {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+*::-webkit-scrollbar {
+  display: none;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-family);
+    overflow-x: hidden;
+  }
+
+  /* Ensure smooth scrolling without visible scrollbars */
+  .scroll-container {
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .scroll-container::-webkit-scrollbar {
+    display: none;
+  }
+
+  .horizontal-scroll {
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .horizontal-scroll::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Typography with High Contrast */
+@layer base {
+  :where(:not(:has([class*=" text-"]), :not(:has([class^="text-"])))) {
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      line-height: 1.2;
+      font-family: var(--font-family);
+      color: var(--livt-white);
+    }
+
+    h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      line-height: 1.3;
+      font-family: var(--font-family);
+      color: var(--livt-white);
+    }
+
+    h3 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      line-height: 1.4;
+      font-family: var(--font-family);
+      color: var(--livt-white);
+    }
+
+    h4 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      line-height: 1.4;
+      font-family: var(--font-family);
+      color: var(--livt-white);
+    }
+
+    p {
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.6;
+      font-family: var(--font-family);
+      color: var(--livt-white);
+    }
+
+    label {
+      font-size: 0.875rem;
+      font-weight: 500;
+      line-height: 1.5;
+      font-family: var(--font-family);
+      color: var(--livt-white);
+    }
+
+    button {
+      font-size: 1rem;
+      font-weight: 600;
+      line-height: 1.5;
+      font-family: var(--font-family);
+    }
+
+    input {
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.5;
+      font-family: var(--font-family);
+      color: var(--livt-white);
+    }
+  }
+}
+
+html {
+  font-size: var(--font-size);
+}
+
+/* LIVT Component System - Luxury Cards */
+.livt-card {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius);
+  transition: all 0.3s ease;
+}
+
+.livt-card:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.livt-card-ai {
+  background: rgba(168, 85, 247, 0.05);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(168, 85, 247, 0.15);
+  border-radius: var(--radius);
+  transition: all 0.3s ease;
+}
+
+.livt-card-ai:hover {
+  background: rgba(168, 85, 247, 0.08);
+  border-color: rgba(168, 85, 247, 0.25);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(168, 85, 247, 0.15);
+}
+
+.livt-card-performance {
+  background: rgba(0, 212, 255, 0.05);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 212, 255, 0.15);
+  border-radius: var(--radius);
+  transition: all 0.3s ease;
+}
+
+.livt-card-performance:hover {
+  background: rgba(0, 212, 255, 0.08);
+  border-color: rgba(0, 212, 255, 0.25);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(0, 212, 255, 0.15);
+}
+
+/* LIVT Button System */
+.livt-button-primary {
+  background: linear-gradient(135deg, var(--livt-white), var(--livt-light-gray));
+  color: var(--livt-black);
+  border: none;
+  font-weight: 700;
+  border-radius: var(--radius);
+  transition: all 0.2s ease;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.livt-button-primary:hover {
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+  transform: translateY(-1px);
+}
+
+.livt-button-secondary {
+  background: transparent;
+  color: var(--livt-white);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  font-weight: 600;
+  border-radius: var(--radius);
+  transition: all 0.2s ease;
+  backdrop-filter: blur(10px);
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.livt-button-secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-1px);
+}
+
+.livt-button-ai {
+  background: linear-gradient(135deg, var(--livt-purple), #9333ea);
+  color: var(--livt-white);
+  border: none;
+  font-weight: 700;
+  border-radius: var(--radius);
+  transition: all 0.2s ease;
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.2);
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.livt-button-ai:hover {
+  box-shadow: 0 0 30px rgba(168, 85, 247, 0.3);
+  transform: translateY(-1px);
+}
+
+.livt-button-performance {
+  background: linear-gradient(135deg, var(--livt-cyan), #00b8e6);
+  color: var(--livt-black);
+  border: none;
+  font-weight: 700;
+  border-radius: var(--radius);
+  transition: all 0.2s ease;
+  box-shadow: 0 0 20px rgba(0, 212, 255, 0.2);
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.livt-button-performance:hover {
+  box-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
+  transform: translateY(-1px);
+}
+
+/* LIVT Text System - High Contrast */
+.livt-text-primary {
+  color: var(--livt-white);
+  font-weight: 700;
+}
+
+.livt-text-secondary {
+  color: var(--livt-light-gray);
+  font-weight: 500;
+}
+
+.livt-text-muted {
+  color: var(--livt-gray);
+  font-weight: 400;
+}
+
+.livt-text-ai {
+  color: var(--livt-purple);
+  font-weight: 600;
+}
+
+.livt-text-performance {
+  color: var(--livt-cyan);
+  font-weight: 600;
+}
+
+.livt-text-success {
+  color: var(--data-green);
+  font-weight: 600;
+}
+
+.livt-text-warning {
+  color: var(--data-amber);
+  font-weight: 600;
+}
+
+.livt-text-error {
+  color: var(--data-red);
+  font-weight: 600;
+}
+
+/* LIVT Badge System */
+.livt-badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: calc(var(--radius) * 0.5);
+  font-size: 0.75rem;
+  font-weight: 600;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+}
+
+.livt-badge-default {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--livt-white);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.livt-badge-ai {
+  background: rgba(168, 85, 247, 0.2);
+  color: var(--livt-purple);
+  border-color: rgba(168, 85, 247, 0.3);
+}
+
+.livt-badge-performance {
+  background: rgba(0, 212, 255, 0.2);
+  color: var(--livt-cyan);
+  border-color: rgba(0, 212, 255, 0.3);
+}
+
+.livt-badge-success {
+  background: rgba(16, 185, 129, 0.2);
+  color: var(--data-green);
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+.livt-badge-warning {
+  background: rgba(245, 158, 11, 0.2);
+  color: var(--data-amber);
+  border-color: rgba(245, 158, 11, 0.3);
+}
+
+/* LIVT Avatar System */
+.livt-avatar {
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  position: relative;
+  background: linear-gradient(135deg, var(--livt-white), var(--livt-light-gray));
+  color: var(--livt-black);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+.livt-avatar-lg {
+  width: 4rem;
+  height: 4rem;
+  font-size: 1.5rem;
+}
+
+.livt-avatar-md {
+  width: 3rem;
+  height: 3rem;
+  font-size: 1.25rem;
+}
+
+.livt-avatar-sm {
+  width: 2rem;
+  height: 2rem;
+  font-size: 0.875rem;
+}
+
+/* LIVT Background System */
+.livt-bg-gradient {
+  background: linear-gradient(135deg, 
+    var(--livt-black) 0%, 
+    var(--livt-dark-gray) 25%, 
+    var(--livt-medium-gray) 50%, 
+    var(--livt-dark-gray) 75%, 
+    var(--livt-black) 100%);
+}
+
+/* LIVT Animation System */
+.livt-hover-lift {
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.livt-hover-lift:hover {
+  transform: translateY(-2px);
+}
+
+.livt-scale-tap {
+  transition: transform 0.1s ease-in-out;
+}
+
+.livt-scale-tap:active {
+  transform: scale(0.98);
+}
+
+@keyframes livt-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.livt-fade-in {
+  animation: livt-fade-in 0.3s ease-out;
+}
+
+@keyframes livt-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.livt-pulse {
+  animation: livt-pulse 2s ease-in-out infinite;
+}
+
+/* Enhanced Streak Fire Animation */
+@keyframes streak-fire {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+    filter: hue-rotate(0deg) brightness(1);
+  }
+  25% {
+    transform: scale(1.15) rotate(-2deg);
+    opacity: 0.9;
+    filter: hue-rotate(10deg) brightness(1.2);
+  }
+  50% {
+    transform: scale(1.08) rotate(1deg);
+    opacity: 1.1;
+    filter: hue-rotate(-5deg) brightness(1.1);
+  }
+  75% {
+    transform: scale(1.12) rotate(-1deg);
+    opacity: 0.95;
+    filter: hue-rotate(5deg) brightness(1.15);
+  }
+}
+
+.streak-fire-animate {
+  animation: streak-fire 1.8s ease-in-out infinite;
+  color: var(--data-amber);
+  filter: drop-shadow(0 0 4px rgba(245, 158, 11, 0.3));
+}
+
+/* Alternative fire flicker for different elements */
+@keyframes fire-flicker {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  20% {
+    transform: scale(1.05);
+    opacity: 0.9;
+  }
+  40% {
+    transform: scale(1.02);
+    opacity: 1.1;
+  }
+  60% {
+    transform: scale(1.08);
+    opacity: 0.85;
+  }
+  80% {
+    transform: scale(1.03);
+    opacity: 1.05;
+  }
+}
+
+.fire-animate {
+  animation: fire-flicker 2.2s ease-in-out infinite;
+}
+
+/* LIVT Input System */
+.livt-input {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius);
+  color: var(--livt-white);
+  font-weight: 400;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(10px);
+}
+
+.livt-input:focus {
+  outline: none;
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
+}
+
+.livt-input::placeholder {
+  color: var(--livt-gray);
+}
+
+/* LIVT Progress System */
+.livt-progress {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.livt-progress-bar {
+  background: linear-gradient(90deg, var(--livt-cyan), var(--livt-purple));
+  height: 100%;
+  border-radius: var(--radius);
+  transition: width 0.3s ease;
+}
+
+/* LIVT FAB (Floating Action Button) */
+.livt-fab {
+  position: fixed;
+  bottom: 6rem;
+  right: 1.5rem;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+
+.livt-fab:hover {
+  transform: scale(1.1);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* Onboarding Specific Styles */
+@keyframes float-animation {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.float-animation {
+  animation: float-animation 6s ease-in-out infinite;
+}
+
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.slide-in {
+  animation: slide-in 0.4s ease-out;
+}
+
+@keyframes counter-animate {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.counter-animate {
+  animation: counter-animate 0.6s ease-out;
+}
+
+@keyframes bounce-select {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.bounce-select {
+  animation: bounce-select 0.3s ease-out;
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+  }
+}
+
+.pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes microcopy-fade {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  10%, 90% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+
+.microcopy-fade {
+  animation: microcopy-fade 3s ease-in-out;
+}
+
+@keyframes confetti {
+  0% {
+    transform: translateY(-100vh) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+.confetti {
+  animation: confetti 3s linear infinite;
+}
+
+.onboarding-card {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius);
+  transition: all 0.3s ease;
+}
+
+.onboarding-card:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.onboarding-card.selected {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+}
+
+.shadow-glow-white {
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+/* Legacy Support Classes - Using Direct Styles */
+.glassmorphism {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius);
+  transition: all 0.3s ease;
+}
+
+.glassmorphism:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.luxury-card {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius);
+  transition: all 0.3s ease;
+}
+
+.luxury-card:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.luxury-card-ai {
+  background: rgba(168, 85, 247, 0.05);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(168, 85, 247, 0.15);
+  border-radius: var(--radius);
+  transition: all 0.3s ease;
+}
+
+.luxury-card-ai:hover {
+  background: rgba(168, 85, 247, 0.08);
+  border-color: rgba(168, 85, 247, 0.25);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(168, 85, 247, 0.15);
+}
+
+.luxury-card-data {
+  background: rgba(0, 212, 255, 0.05);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 212, 255, 0.15);
+  border-radius: var(--radius);
+  transition: all 0.3s ease;
+}
+
+.luxury-card-data:hover {
+  background: rgba(0, 212, 255, 0.08);
+  border-color: rgba(0, 212, 255, 0.25);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(0, 212, 255, 0.15);
+}
+
+.glow-button {
+  background: linear-gradient(135deg, var(--livt-white), var(--livt-light-gray));
+  color: var(--livt-black);
+  border: none;
+  font-weight: 700;
+  border-radius: var(--radius);
+  transition: all 0.2s ease;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.glow-button:hover {
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+  transform: translateY(-1px);
+}
+
+.text-luxury-primary {
+  color: var(--livt-white);
+  font-weight: 700;
+}
+
+.text-luxury-secondary {
+  color: var(--livt-light-gray);
+  font-weight: 500;
+}
+
+.text-luxury-muted {
+  color: var(--livt-gray);
+  font-weight: 400;
+}
+
+.hover-lift {
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.hover-lift:hover {
+  transform: translateY(-2px);
+}
+
+.scale-in {
+  transition: transform 0.1s ease-in-out;
+}
+
+.scale-in:active {
+  transform: scale(0.98);
+}
+
+.bg-luxury-gradient {
+  background: linear-gradient(135deg, 
+    var(--livt-black) 0%, 
+    var(--livt-dark-gray) 25%, 
+    var(--livt-medium-gray) 50%, 
+    var(--livt-dark-gray) 75%, 
+    var(--livt-black) 100%);
+}
+
+.livt-logo {
+  font-family: var(--font-family);
+  font-weight: 800;
+  color: var(--livt-white);
+  letter-spacing: -0.05em;
+}
+
+.value-prop-text {
+  color: var(--livt-light-gray);
+  font-weight: 300;
+}
+
+/* Enhanced LIVT Logo Glow Effect */
+.livt-glow-subtle {
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.2), 0 0 40px rgba(255, 255, 255, 0.1);
+  filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.15));
+}
